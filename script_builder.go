@@ -1,18 +1,18 @@
-package GoPiGPIO
+package pigpio
 
 import (
-	"fmt"
+    "fmt"
 )
 
 type ScriptBuilder struct {
-	code string
+    code string
 }
 
 func (sc *ScriptBuilder) Code() string { return sc.code }
 
 func (sc *ScriptBuilder) append(cmd string) *ScriptBuilder {
-	sc.code += cmd + " "
-	return sc
+    sc.code += cmd + " "
+    return sc
 }
 
 // Add
@@ -115,7 +115,7 @@ func (sc *ScriptBuilder) Jz(tag int) *ScriptBuilder { return sc.append(fmt.Sprin
 // Load register with x
 // *y=x
 func (sc *ScriptBuilder) Ld(y int, x int) *ScriptBuilder {
-	return sc.append(fmt.Sprintf("ld %d %d", y, x))
+    return sc.append(fmt.Sprintf("ld %d %d", y, x))
 }
 
 // Lda
@@ -177,7 +177,7 @@ func (sc *ScriptBuilder) Ret() *ScriptBuilder { return sc.append("ret") }
 // Rotate left register x bits
 // *y<<=x; F=*y
 func (sc *ScriptBuilder) Rl(y int, x int) *ScriptBuilder {
-	return sc.append(fmt.Sprintf("rl %d %d", y, x))
+    return sc.append(fmt.Sprintf("rl %d %d", y, x))
 }
 
 // Rla
@@ -191,7 +191,7 @@ func (sc *ScriptBuilder) Rla(x int) *ScriptBuilder { return sc.append(fmt.Sprint
 // Rotate right register x bits
 // *y>>=x; F=*y
 func (sc *ScriptBuilder) Rr(y int, x int) *ScriptBuilder {
-	return sc.append(fmt.Sprintf("rr %d %d", y, x))
+    return sc.append(fmt.Sprintf("rr %d %d", y, x))
 }
 
 // Rra
@@ -234,7 +234,7 @@ func (sc *ScriptBuilder) Wait(x int) *ScriptBuilder { return sc.append(fmt.Sprin
 //
 // Write level to gpio
 func (sc *ScriptBuilder) Write(gpio *GpioPin, level GpioLevel) *ScriptBuilder {
-	return sc.append(fmt.Sprintf("w %d %d", gpio.pin, level))
+    return sc.append(fmt.Sprintf("w %d %d", gpio.pin, level))
 }
 
 // X
@@ -242,7 +242,7 @@ func (sc *ScriptBuilder) Write(gpio *GpioPin, level GpioLevel) *ScriptBuilder {
 // Exchange contents of registers y1 and y2
 // t=*y1;*y1=*y2;*y2=t
 func (sc *ScriptBuilder) X(y1 int, y2 int) *ScriptBuilder {
-	return sc.append(fmt.Sprintf("x %d %d", y1, y2))
+    return sc.append(fmt.Sprintf("x %d %d", y1, y2))
 }
 
 // Xa

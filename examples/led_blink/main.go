@@ -1,7 +1,7 @@
 package main
 
 import (
-	"GoPiGPIO/pkg/pigpio"
+	"github.com/BxNiom/go-pigpio"
 	"time"
 )
 

@@ -1,4 +1,4 @@
-package GoPiGPIO
+package pigpio
 
 type CallbackFunc func(*GpioPin, uint)
 

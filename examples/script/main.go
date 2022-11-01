@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/BxNiom/GoPiGPIO"
+	"github.com/BxNiom/go-pigpio"
 	"time"
 )
 

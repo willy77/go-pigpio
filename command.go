@@ -1,4 +1,4 @@
-package GoPiGPIO
+package pigpio
 
 type Command int
 
