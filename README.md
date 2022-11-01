@@ -3,6 +3,10 @@
 Implementation of the [PiGPIO](http://abyz.me.uk/rpi/pigpio/) socket to communicate with the PiGPIO daemon. Can be used
 to communicate over network or localhost.
 
+```go
+import "github.com/BxNiom/go-pigpio"
+```
+
 For documentation have a look at [docs/pigpio-reference.md](./docs/pigpio-reference.md)
 
 ### Features
