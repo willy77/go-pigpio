@@ -8,7 +8,7 @@ import (
 
 func main() {
 	var e error
-	pi, e := pigpio.Initialize("192.168.178.218", 8888)
+	pi, e := pigpio.Initialize(localhost, 8888)
 	if e != nil {
 		panic(e)
 	}
