@@ -1,5 +1,7 @@
 # Go PiGPIO Socket Interface
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/BxNiom/go-pigpio.svg)](https://pkg.go.dev/github.com/BxNiom/go-pigpio)
+
 Implementation of the [PiGPIO](http://abyz.me.uk/rpi/pigpio/) socket to communicate with the PiGPIO daemon. Can be used
 to communicate over network or localhost.
 
@@ -7,14 +9,7 @@ to communicate over network or localhost.
 import "github.com/BxNiom/go-pigpio"
 ```
 
-For documentation have a look at [docs/pigpio-reference.md](./docs/pigpio-reference.md)
-
-### Features
-
-* Communication via sockets allows remote control pigpiod over network
-* Almost complete implementation of [python pigpio](http://abyz.me.uk/rpi/pigpio/python.html) (see features to
-  implement)
-* No need of any C-Headers for compilation
+For documentation have a look at [docs/README.md](./docs/README.md) 
 
 ---
 
@@ -34,7 +29,17 @@ For documentation have a look at [docs/pigpio-reference.md](./docs/pigpio-refere
 | :green_circle:  | serial            | ![](https://progress-bar.dev/100) | open/read/write to tty                                           | __Finished__ |
 | :green_circle:  | callbacks         | ![](https://progress-bar.dev/100) |                                                                  | __Finished__ |
 | :green_circle:  | scripts           | ![](https://progress-bar.dev/100) |                                                                  | __Finished__ |
+| :green_circle:  | file              | ![](https://progress-bar.dev/100) | open/read/write files                                            | __Finished__ |
 | :green_circle:  | error codes       | ![](https://progress-bar.dev/100) | implement pigpiod error codes                                    | __Finished__ |
 | :yellow_circle: | documentation     | ![](https://progress-bar.dev/50)  | currently using comments from pypigpio<br/>modify to fit go code |              |
 
 :white_circle: Todo | :yellow_circle: Work in progress | :orange_circle: Features todo | :green_circle: Done
+
+### Changelog
+
+* RC 1.1
+  * File operations added
+  * Changed error message if data read failed
+
+* RC1
+  * First release candidate

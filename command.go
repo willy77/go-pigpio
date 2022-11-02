@@ -83,6 +83,13 @@ const (
 	cmdNoIB              Command = 99
 	cmdWaveTxUsingMode   Command = 100
 	cmdWaveTxAt          Command = 101
+	cmdFileOpen          Command = 104
+	cmdFileClose         Command = 105
+	cmdFileRead          Command = 106
+	cmdFileWrite         Command = 107
+	cmdFileSeek          Command = 108
+	cmdFileList          Command = 109
+	cmdShell             Command = 110
 	cmdEventM            Command = 115
 	cmdScriptUpdate      Command = 117
 	cmdWaveCAP           Command = 118

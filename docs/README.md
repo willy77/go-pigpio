@@ -8,12 +8,24 @@ import "github.com/BxNiom/go-pigpio"
 
 ## Index
 
-- [func NewPiError(code int, innerError error, msgFmt string, a ...any) error](<#func-newpierror>)
 - [type BCM](<#type-bcm>)
 - [type Callback](<#type-callback>)
+  - [func (c *Callback) Bit() int](<#func-callback-bit>)
+  - [func (c *Callback) Edge() Edge](<#func-callback-edge>)
+  - [func (c *Callback) Handle() int](<#func-callback-handle>)
 - [type CallbackFunc](<#type-callbackfunc>)
 - [type Command](<#type-command>)
 - [type Edge](<#type-edge>)
+- [type File](<#type-file>)
+  - [func (f *File) Close() error](<#func-file-close>)
+  - [func (f *File) Filename() string](<#func-file-filename>)
+  - [func (f *File) Handle() int](<#func-file-handle>)
+  - [func (f *File) Mode() FileMode](<#func-file-mode>)
+  - [func (f *File) Read(count int) ([]byte, error)](<#func-file-read>)
+  - [func (f *File) Seek(offset int, from FileSeekFrom) (int, error)](<#func-file-seek>)
+  - [func (f *File) Write(data []byte) error](<#func-file-write>)
+- [type FileMode](<#type-filemode>)
+- [type FileSeekFrom](<#type-fileseekfrom>)
 - [type GenericPulse](<#type-genericpulse>)
   - [func CreatePulse(gpioOn *GpioPin, gpioOff *GpioPin, delay int) GenericPulse](<#func-createpulse>)
 - [type GpioLevel](<#type-gpiolevel>)
@@ -76,9 +88,11 @@ import "github.com/BxNiom/go-pigpio"
   - [func (p *Pi) CurrentTick() (uint, error)](<#func-pi-currenttick>)
   - [func (p *Pi) Gpio(bcm BCM) *GpioPin](<#func-pi-gpio>)
   - [func (p *Pi) HwReversion() uint](<#func-pi-hwreversion>)
+  - [func (p *Pi) ListFiles(pattern string) ([]string, error)](<#func-pi-listfiles>)
   - [func (p *Pi) MaxCBS() (int, error)](<#func-pi-maxcbs>)
   - [func (p *Pi) MaxMicros() (int, error)](<#func-pi-maxmicros>)
   - [func (p *Pi) MaxPulses() (int, error)](<#func-pi-maxpulses>)
+  - [func (p *Pi) OpenFile(filename string, mode FileMode) (*File, error)](<#func-pi-openfile>)
   - [func (p *Pi) OpenI2C(bus int, address int, flags I2CFlags) (*I2C, error)](<#func-pi-openi2c>)
   - [func (p *Pi) OpenSPI(channel int, baud int, flags int) (*SPI, error)](<#func-pi-openspi>)
   - [func (p *Pi) OpenSerial(tty string, baud int) (*Serial, error)](<#func-pi-openserial>)
@@ -88,7 +102,11 @@ import "github.com/BxNiom/go-pigpio"
   - [func (p *Pi) StoreScript(code string) (*Script, error)](<#func-pi-storescript>)
 - [type PiBank](<#type-pibank>)
 - [type PiError](<#type-pierror>)
+  - [func (pe *PiError) Code() int](<#func-pierror-code>)
+  - [func (pe *PiError) CodeMessage() string](<#func-pierror-codemessage>)
   - [func (e *PiError) Error() string](<#func-pierror-error>)
+  - [func (pe *PiError) InnerError() error](<#func-pierror-innererror>)
+  - [func (pe *PiError) Message() string](<#func-pierror-message>)
 - [type PullUpDownMode](<#type-pullupdownmode>)
 - [type SPI](<#type-spi>)
   - [func (s *SPI) Close() error](<#func-spi-close>)
@@ -183,12 +201,6 @@ import "github.com/BxNiom/go-pigpio"
   - [func (wc *WaveChain) Wave(w *Wave) *WaveChain](<#func-wavechain-wave>)
 
 
-## func NewPiError
-
-```go
-func NewPiError(code int, innerError error, msgFmt string, a ...any) error
-```
-
 ## type BCM
 
 ```go
@@ -272,7 +284,27 @@ type Callback struct {
 }
 ```
 
+### func \(\*Callback\) Bit
+
+```go
+func (c *Callback) Bit() int
+```
+
+### func \(\*Callback\) Edge
+
+```go
+func (c *Callback) Edge() Edge
+```
+
+### func \(\*Callback\) Handle
+
+```go
+func (c *Callback) Handle() int
+```
+
 ## type CallbackFunc
+
+CallbackFunc is used for gpio callbacks
 
 ```go
 type CallbackFunc func(*GpioPin, uint)
@@ -295,6 +327,87 @@ const (
     EdgeRising  Edge = 0
     EdgeFalling Edge = 1
     EdgeEither  Edge = 2
+)
+```
+
+## type File
+
+```go
+type File struct {
+    // contains filtered or unexported fields
+}
+```
+
+### func \(\*File\) Close
+
+```go
+func (f *File) Close() error
+```
+
+### func \(\*File\) Filename
+
+```go
+func (f *File) Filename() string
+```
+
+### func \(\*File\) Handle
+
+```go
+func (f *File) Handle() int
+```
+
+### func \(\*File\) Mode
+
+```go
+func (f *File) Mode() FileMode
+```
+
+### func \(\*File\) Read
+
+```go
+func (f *File) Read(count int) ([]byte, error)
+```
+
+### func \(\*File\) Seek
+
+```go
+func (f *File) Seek(offset int, from FileSeekFrom) (int, error)
+```
+
+### func \(\*File\) Write
+
+```go
+func (f *File) Write(data []byte) error
+```
+
+## type FileMode
+
+```go
+type FileMode int
+```
+
+```go
+const (
+    FileRead      FileMode = 1
+    FileWrite     FileMode = 2
+    FileReadWrite FileMode = 3
+    FileAppend    FileMode = 4
+    FileCreate    FileMode = 8
+    FileTrunc     FileMode = 16
+)
+```
+
+## type FileSeekFrom
+
+```go
+type FileSeekFrom int
+```
+
+```go
+const (
+    FromStart   FileSeekFrom = 0
+    FromCurrent FileSeekFrom = 1
+    FromEnd     FileSeekFrom = 1
 )
 ```
 
@@ -368,15 +481,15 @@ type GpioPin struct {
 func (gp *GpioPin) AddCallback(edge Edge, fn CallbackFunc) Callback
 ```
 
+AddCallback calls a user supplied function \(fn\) whenever the specified GPIO edge is detected. The user supplied function receives two parameters, the GPIO and the tick.
+
 ### func \(\*GpioPin\) GetMode
 
 ```go
 func (gp *GpioPin) GetMode() (GpioMode, error)
 ```
 
-#### GetMode
-
-Returns the current mode of the gpio pin
+GetMode returns the GPIO mode
 
 ### func \(\*GpioPin\) Pwm
 
@@ -390,9 +503,16 @@ func (gp *GpioPin) Pwm() *GpioPwm
 func (gp *GpioPin) Read() (GpioLevel, error)
 ```
 
-cmdGR
+#### Read returns GPIO level
 
-Returns level of the gpio pin
+Example:
+
+```
+pi.Gpio(23).SetMode(ModeInput)
+pi.Gpio(23).SetPullMode(pudDown)
+fmt.Println(pi.Gpio(23).Read())
+// Output:    0
+```
 
 ### func \(\*GpioPin\) RemoveCallback
 
@@ -412,20 +532,65 @@ func (gp *GpioPin) Servo() *GpioServo
 func (gp *GpioPin) SetGlitchFilter(steady int) error
 ```
 
+SetGlitchFilter sets a glitch filter on a GPIO.
+
+Level changes on the GPIO are not reported unless the level has been stable for at least steady microseconds. The level is then reported.  Level changes of less than steady microseconds are ignored.
+
+Parameters:
+
+```
+steady: 0 - 300000
+```
+
+Example:
+
+```
+pi.Gpio(8).SetGlitchFilter(100)
+```
+
 ### func \(\*GpioPin\) SetMode
 
 ```go
 func (gp *GpioPin) SetMode(mode GpioMode) error
 ```
 
-#### SetMode
+#### SetMode sets GPIO mode
 
-Set mode of gpio pin
+Parameters:
+
+```
+mode: GpioMode
+```
+
+Example:
+
+```
+pi.Gpio(4).SetMode(4, ModeInput)   // GPIO 4 as input
+pi.Gpio(4).SetMode(17, ModeOutput) // GPIO 17 as output
+pi.Gpio(4).SetMode(24, ModeAlt2)   // GPIO 24 as ALT2
+```
 
 ### func \(\*GpioPin\) SetNoiseFilter
 
 ```go
 func (gp *GpioPin) SetNoiseFilter(steady int, active int) error
+```
+
+SetNoiseFilter sets a noise filter on a GPIO.
+
+Level changes on the GPIO are ignored until a level which has been stable for steady microseconds is detected. Level changes on the GPIO are then reported for active microseconds after which the process repeats.
+
+Parameters:
+
+```
+steady: 0 - 300000
+active: 0 - 1000000
+```
+
+Example:
+
+```
+pi.Gpio(8).SetNoiseFilter(1000, 5000)
 ```
 
 ### func \(\*GpioPin\) SetPullMode
@@ -434,9 +599,21 @@ func (gp *GpioPin) SetNoiseFilter(steady int, active int) error
 func (gp *GpioPin) SetPullMode(mode PullUpDownMode) error
 ```
 
-#### SetPullMode
+#### SetPullMode sets or clears the internal GPIO pull\-up/down resistor
 
-Sets or clears the internal GPIO pull\-up/down resistor.
+Parameters:
+
+```
+mode: PullUpDownMode
+```
+
+Example:
+
+```
+pi.Gpio(17).SetPullMode(PudOff)
+pi.Gpio(23).SetPullMode(PudUp)
+pi.Gpio(24).SetPullMode(PudDown)
+```
 
 ### func \(\*GpioPin\) Trigger
 
@@ -444,9 +621,13 @@ Sets or clears the internal GPIO pull\-up/down resistor.
 func (gp *GpioPin) Trigger(pulseLen int, level GpioLevel) error
 ```
 
-#### Trigger
+Trigger send a trigger pulse to a GPIO. The GPIO is set to level for pulseLen \(1\-100\) microseconds and then reset to not level.
 
-Send a trigger pulse to a GPIO.  The GPIO is set to level for pulseLen \(0\-100\) microseconds and then reset to not level.
+Example:
+
+```
+pi.Gpio(17).Trigger(10, High)
+```
 
 ### func \(\*GpioPin\) Write
 
@@ -454,9 +635,22 @@ Send a trigger pulse to a GPIO.  The GPIO is set to level for pulseLen \(0\-100\
 func (gp *GpioPin) Write(level GpioLevel) error
 ```
 
-cmdGW
+#### Write sets GPIO level
 
-Set gpio pin to level
+Example:
+
+```
+gpio := pi.Gpio(17)
+gpio.SetMode(ModeInput)
+
+gpio.Write(Low)
+fmt.Println(gpio.Read)
+// Output: 0
+
+gpio.Write(High)
+fmt.Println(gpio.Read)
+// Output: 1
+```
 
 ## type GpioPwm
 
@@ -782,6 +976,12 @@ func (p *Pi) Gpio(bcm BCM) *GpioPin
 func (p *Pi) HwReversion() uint
 ```
 
+### func \(\*Pi\) ListFiles
+
+```go
+func (p *Pi) ListFiles(pattern string) ([]string, error)
+```
+
 ### func \(\*Pi\) MaxCBS
 
 ```go
@@ -798,6 +998,12 @@ func (p *Pi) MaxMicros() (int, error)
 
 ```go
 func (p *Pi) MaxPulses() (int, error)
+```
+
+### func \(\*Pi\) OpenFile
+
+```go
+func (p *Pi) OpenFile(filename string, mode FileMode) (*File, error)
 ```
 
 ### func \(\*Pi\) OpenI2C
@@ -859,17 +1065,38 @@ const (
 
 ```go
 type PiError struct {
-    Code        int
-    Message     string
-    CodeMessage string
-    InnerError  error
+    // contains filtered or unexported fields
 }
+```
+
+### func \(\*PiError\) Code
+
+```go
+func (pe *PiError) Code() int
+```
+
+### func \(\*PiError\) CodeMessage
+
+```go
+func (pe *PiError) CodeMessage() string
 ```
 
 ### func \(\*PiError\) Error
 
 ```go
 func (e *PiError) Error() string
+```
+
+### func \(\*PiError\) InnerError
+
+```go
+func (pe *PiError) InnerError() error
+```
+
+### func \(\*PiError\) Message
+
+```go
+func (pe *PiError) Message() string
 ```
 
 ## type PullUpDownMode
