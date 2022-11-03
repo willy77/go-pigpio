@@ -14,7 +14,7 @@ func (p *Pi) ReadBank(bank PiBank) (int, error) {
 	}
 
 	r, e := p.socket.SendCommand(cmd, 0, 0, nil)
-	if e != nil || r < 0 {
+	if e != nil {
 		return 0, newPiError(r, e, "ReadBank(bank: %d)", cmd)
 	}
 
