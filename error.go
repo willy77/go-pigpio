@@ -22,10 +22,10 @@ func newPiError(code int, innerError error, msgFmt string, a ...any) error {
 		innerError:  innerError}
 }
 
-func (e *PiError) Error() string {
-	msg := fmt.Sprintf("%s (ErrorCode: %d; %s)", e.message, e.Code, e.codeMessage)
-	if e.innerError != nil {
-		msg += fmt.Sprintf(": %s", e.innerError.Error())
+func (pe *PiError) Error() string {
+	msg := fmt.Sprintf("%s (ErrorCode: %d; %s)", pe.message, pe.code, pe.codeMessage)
+	if pe.innerError != nil {
+		msg += fmt.Sprintf(": %s", pe.innerError.Error())
 	}
 
 	return msg
