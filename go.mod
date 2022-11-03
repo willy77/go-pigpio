@@ -1,3 +1,3 @@
-module github.com/BxNiom/go-pigpio
+module git.bxniom.org/BxNiom/go-pigpio
 
 go 1.19
