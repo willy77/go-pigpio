@@ -3,7 +3,7 @@
 # pigpio
 
 ```go
-import "github.com/BxNiom/go-pigpio/"
+import "github.com/BxNiom/go-pigpio/pigpio"
 ```
 
 ## Index
