@@ -17,7 +17,7 @@ func main() {
 	p3 := pi.Gpio(3)
 	p4 := pi.Gpio(4)
 
-	p2.SetMode(pigpio.pigpio.ModeOutput)
+	p2.SetMode(pigpio.ModeOutput)
 	p3.SetMode(pigpio.ModeOutput)
 	p4.SetMode(pigpio.ModeOutput)
 
