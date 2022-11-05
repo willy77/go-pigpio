@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/BxNiom/go-pigpio"
+	"github.com/BxNiom/go-pigpio/pkg/pigpio"
 	"sync"
 )
 
@@ -13,7 +13,7 @@ func main() {
 		panic(e)
 	}
 
-	pi.Gpio(17).AddCallback(pigpio.EdgeRising, GpioCallback)
+	pi.Gpio(17).AddCallback(pigpio.pigpio.EdgeRising, GpioCallback)
 
 	wg := sync.WaitGroup{}
 	wg.Add(1)

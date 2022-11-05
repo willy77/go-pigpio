@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/BxNiom/go-pigpio"
+	"github.com/BxNiom/go-pigpio/pkg/pigpio"
 	"time"
 )
 
@@ -13,7 +13,7 @@ func main() {
 	}
 
 	gpio := pi.Gpio(2)
-	if e = gpio.SetMode(pigpio.ModeOutput); e != nil {
+	if e = gpio.SetMode(pigpio.pigpio.ModeOutput); e != nil {
 		panic(e)
 	}
 
