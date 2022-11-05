@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gomarkdoc --output ../docs/README.md ../
+gomarkdoc --output ../docs/README.md ../pigpio
