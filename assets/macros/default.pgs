@@ -15,7 +15,7 @@
         "name": "lerp",
         "params": 3,
         "results": 1,
-        "code": "lda 100 sub v132 mlt v130 sta v133 lda v131 mlt v132 add v133 sta v140"
+        "code": "lda 100 sub v132 mlt v130 sta v133 lda v131 mlt v132 add v133 div 100 sta v140"
     },
     {
         "name": "pera",
@@ -27,7 +27,8 @@
         "name": "lerpa",
         "params": 3,
         "results": 0,
-        "code": "lda 100 sub v132 mlt v130 sta v133 lda v131 mlt v132 add v133"    },
+        "code": "lda 100 sub v132 mlt v130 sta v133 lda v131 mlt v132 add v133 div 100"
+    },
     {
         "name": "addx",
         "params": 2,
