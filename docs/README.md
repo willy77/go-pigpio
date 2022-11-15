@@ -3,7 +3,7 @@
 # pigpio
 
 ```go
-import "github.com/BxNiom/go-pigpio/pigpio"
+import "github.com/BxNiom/go-pigpio"
 ```
 
 ## Index
@@ -15,6 +15,15 @@ import "github.com/BxNiom/go-pigpio/pigpio"
   - [func (c *Callback) Handle() int](<#func-callback-handle>)
 - [type CallbackFunc](<#type-callbackfunc>)
 - [type Command](<#type-command>)
+- [type CompileError](<#type-compileerror>)
+  - [func NewCompileError(line int, msgFmt string, a ...any) *CompileError](<#func-newcompileerror>)
+  - [func (ce *CompileError) Error() string](<#func-compileerror-error>)
+- [type Compiler](<#type-compiler>)
+  - [func NewCompiler() *Compiler](<#func-newcompiler>)
+  - [func (c *Compiler) Compile(src string) (string, error)](<#func-compiler-compile>)
+  - [func (c *Compiler) LoadDefaultMacros() error](<#func-compiler-loaddefaultmacros>)
+  - [func (c *Compiler) LoadMacros(j string) error](<#func-compiler-loadmacros>)
+- [type CompilerMacro](<#type-compilermacro>)
 - [type Edge](<#type-edge>)
 - [type File](<#type-file>)
   - [func (f *File) Close() error](<#func-file-close>)
@@ -273,6 +282,69 @@ type CallbackFunc func(*GpioPin, uint)
 
 ```go
 type Command int
+```
+
+## type CompileError
+
+```go
+type CompileError struct {
+    // contains filtered or unexported fields
+}
+```
+
+### func NewCompileError
+
+```go
+func NewCompileError(line int, msgFmt string, a ...any) *CompileError
+```
+
+### func \(\*CompileError\) Error
+
+```go
+func (ce *CompileError) Error() string
+```
+
+## type Compiler
+
+```go
+type Compiler struct {
+    // contains filtered or unexported fields
+}
+```
+
+### func NewCompiler
+
+```go
+func NewCompiler() *Compiler
+```
+
+### func \(\*Compiler\) Compile
+
+```go
+func (c *Compiler) Compile(src string) (string, error)
+```
+
+### func \(\*Compiler\) LoadDefaultMacros
+
+```go
+func (c *Compiler) LoadDefaultMacros() error
+```
+
+### func \(\*Compiler\) LoadMacros
+
+```go
+func (c *Compiler) LoadMacros(j string) error
+```
+
+## type CompilerMacro
+
+```go
+type CompilerMacro struct {
+    Name    string
+    Params  int
+    Results int
+    Code    string
+}
 ```
 
 ## type Edge
