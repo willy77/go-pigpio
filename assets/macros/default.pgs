@@ -1,0 +1,55 @@
+[
+    {
+        "name": "dec",
+        "params": 1,
+        "results": 4,
+        "code": "lda v130 rra 24 and 255 sta v140 lda v130 rra 16 and 255 sta v141 lda v130 rra 8 and 255 sta v142 lda v130 and 255 sta v143"
+    },
+    {
+        "name": "per",
+        "params": 2,
+        "results": 1,
+        "code": "lda v130 mlt 100 div v131 sta v140"
+    },
+    {
+        "name": "lerp",
+        "params": 3,
+        "results": 1,
+        "code": "lda 100 sub v132 mlt v130 sta v133 lda v131 mlt v132 add v133 sta v140"
+    },
+    {
+        "name": "pera",
+        "params": 2,
+        "results": 0,
+        "code": "lda v130 mlt 100 div v131"
+    },
+    {
+        "name": "lerpa",
+        "params": 3,
+        "results": 0,
+        "code": "lda 100 sub v132 mlt v130 sta v133 lda v131 mlt v132 add v133"    },
+    {
+        "name": "addx",
+        "params": 2,
+        "results": 1,
+        "code": "lda v130 add v131"
+    },
+    {
+        "name": "subx",
+        "params": 2,
+        "results": 1,
+        "code": "lda v130 sub v131"
+    },
+    {
+        "name": "divx",
+        "params": 2,
+        "results": 1,
+        "code": "lda v130 div v131"
+    },
+    {
+        "name": "mltx",
+        "params": 2,
+        "results": 1,
+        "code": "lda v130 mlt v131"
+    }
+]

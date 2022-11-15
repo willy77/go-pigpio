@@ -17,7 +17,7 @@ func (pe *PiError) InnerError() error   { return pe.innerError }
 func newPiError(code int, innerError error, msgFmt string, a ...any) error {
 	return &PiError{
 		code:        code,
-		message:     fmt.Sprintf(msgFmt, a),
+		message:     fmt.Sprintf(msgFmt, a...),
 		codeMessage: errorCodeMessage(code),
 		innerError:  innerError}
 }
