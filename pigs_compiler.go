@@ -111,7 +111,7 @@ func (c *Compiler) Compile(src string) (string, error) {
 				}
 
 				for p := 1; p < len(parts); p++ {
-					c.append(fmt.Sprintf("ld v%d %s", parts[p], p+129))
+					c.append(fmt.Sprintf("ld v%d %s", p+129, parts[p]))
 				}
 				c.append(fmt.Sprintf("call %d", 1100+mi))
 
