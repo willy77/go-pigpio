@@ -9,7 +9,7 @@
         "name": "per",
         "params": 2,
         "results": 1,
-        "code": "lda v130 mlt 100 div v131 sta v140"
+        "code": "lda v131 mlt 100 div v130 sta v140"
     },
     {
         "name": "lerp",
@@ -21,7 +21,7 @@
         "name": "pera",
         "params": 2,
         "results": 0,
-        "code": "lda v130 mlt 100 div v131"
+        "code": "lda v131 mlt 100 div v130"
     },
     {
         "name": "lerpa",

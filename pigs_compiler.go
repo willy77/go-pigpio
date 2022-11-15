@@ -128,8 +128,8 @@ func (c *Compiler) Compile(src string) (string, error) {
 		}
 	}
 
-	for id, mid := range usedMacros {
-		c.append(fmt.Sprintf("tag %d %s ret", 1100+id, c.macros[mid].Code))
+	for _, mid := range usedMacros {
+		c.append(fmt.Sprintf("tag %d %s ret", 1100+mid, c.macros[mid].Code))
 	}
 
 	return strings.Join(c.result, " "), nil
