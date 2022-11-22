@@ -8,3 +8,7 @@ func (p *Pi) StoreScript(code string) (*Script, error) {
 
 	return &Script{pi: p, handle: r, code: code}, nil
 }
+
+func (p *Pi) AttachToScript(handle int) *Script {
+	return &Script{pi: p, handle: handle, code: ""}
+}

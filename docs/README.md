@@ -88,6 +88,7 @@ import "github.com/BxNiom/go-pigpio"
 - [type I2CFlags](<#type-i2cflags>)
 - [type Pi](<#type-pi>)
   - [func Initialize(host string, port int) (*Pi, error)](<#func-initialize>)
+  - [func (p *Pi) AttachToScript(handle int) *Script](<#func-pi-attachtoscript>)
   - [func (p *Pi) ClearBank(bank PiBank, mask int) (int, error)](<#func-pi-clearbank>)
   - [func (p *Pi) ClearWaves() error](<#func-pi-clearwaves>)
   - [func (p *Pi) Close() error](<#func-pi-close>)
@@ -948,6 +949,12 @@ remote interface is enabled
 host: host ip address e.g. localhost, 192.168.178.100
 
 port: daemon port
+
+### func \(\*Pi\) AttachToScript
+
+```go
+func (p *Pi) AttachToScript(handle int) *Script
+```
 
 ### func \(\*Pi\) ClearBank
 
