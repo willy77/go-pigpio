@@ -206,7 +206,7 @@ func (gp *GpioPin) RemoveCallback(cb Callback) {
 
 func (gp *GpioPin) invokeCallbacks(level int, tick uint) {
 	for _, cb := range gp.callbacks {
-		if int(cb.edge) == level {
+		if int(cb.edge)^level > 0 {
 			cb.fn(gp, tick)
 		}
 	}
